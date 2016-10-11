@@ -15,40 +15,36 @@
     var app = angular.module("app", []);
     //app.controller("MemberController", ["$scope", "$http" function ($scope, $http) {
 	app.controller("MemberController", function ($scope, $http) {
-	//myApp.controller('myController', function($scope, $http){
         $scope.Members = members;
 		
-			/*
-			$http.jsonp(
+			
+			/*$http.jsonp(
 				  'http://localhost:8080/photo-album'
 				).success(function(response){
 				  $scope.data = response;
 				}).error(function(){
 				  // handle errors
-				}); 
-			*/
-			
-			//alert('111111111111111111111111');
-			//alert($scope.data);
+				});*/ 
 		
 		$http.get('http://localhost:8080/photo-album').success(function (response) {
 				alert("response ..... "+response);
                 $scope.data = response;
+				alert( JSON.stringify( response ) );
             });	
 		alert($scope.data);	
-			
-		
 		//showMessage();
-		
 		
 		function showMessage()
 		{
 			$http.get('http://localhost:8080/photo-album').success(function (response) {
-				alert("response ..... "+response);
-                $scope.data = response;
+				//alert("response ..... "+response);
+                //$scope.data = response;
+				$scope.data = JSON.stringify(response);				
+				//alert("response ..... "+data);
+				alert( JSON.stringify( response ) );
             });	
 
-			alert('111111111111111111111111');
+			alert('2222111111111111');
 			alert($scope.data);
 		}
 		
