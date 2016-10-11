@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Demo</title>
+			<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>		
+	</head>
+<body>
+<script>
+    var members = [
+            { username: 'BBC', urlid: 'http://static.bbci.co.uk/frameworks/barlesque/3.20.5/orb/4/img/bbc-blocks-dark.png' },
+            { username: 'ABC News', urlid: 'http://www.abc.net.au/res/bundles/2.0.5/images/logo-abc@2x.png' },
+            { username: 'Telegraph', urlid: 'http://www.telegraph.co.uk/content/dam/best/telegraph_OUTLINE-small.png' }
+    ];
+
+    var app = angular.module("app", []);
+    //app.controller("MemberController", ["$scope", "$http" function ($scope, $http) {
+	app.controller("MemberController", function ($scope, $http) {
+	//myApp.controller('myController', function($scope, $http){
+        $scope.Members = members;
+		
+			/*
+			$http.jsonp(
+				  'http://localhost:8080/photo-album'
+				).success(function(response){
+				  $scope.data = response;
+				}).error(function(){
+				  // handle errors
+				}); 
+			*/
+			
+			//alert('111111111111111111111111');
+			//alert($scope.data);
+		
+		$http.get('http://localhost:8080/photo-album').success(function (response) {
+				alert("response ..... "+response);
+                $scope.data = response;
+            });	
+		alert($scope.data);	
+			
+		
+		//showMessage();
+		
+		
+		function showMessage()
+		{
+			$http.get('http://localhost:8080/photo-album').success(function (response) {
+				alert("response ..... "+response);
+                $scope.data = response;
+            });	
+
+			alert('111111111111111111111111');
+			alert($scope.data);
+		}
+		
+		
+    });
+
+</script>
+
+<div ng-app="app">
+    <h4>Listing item from the collection</h4>
+    <div ng-controller="MemberController">
+        <ul>
+            <li ng-repeat="member in Members">
+                {{$index + 1}}.  Name: {{member.username }} | <img ng-src="{{member.urlid}}">
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
