@@ -1,0 +1,9 @@
+get MEList and iterate over
+	for each ME
+		- get product_carcode
+		- search product based on product_carcode
+		- get dept_id and class_id
+		- search in item_dept_class_map based on dept_id and class_id
+			get dept_rule
+		- search markdown_rule based on dept_rule
+			get if item is time_locked or not
